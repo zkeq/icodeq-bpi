@@ -40,4 +40,4 @@ jobs:
       - name: 'Working Parwix Decode'
         env:
           PASSWORD: ${{ secrets.PASSWORD }}
-        run: python api\parwix\get-new-url\main.py
+        run: python .\api\parwix\get-new-url\main.py
