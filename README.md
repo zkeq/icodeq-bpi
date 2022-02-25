@@ -21,3 +21,7 @@
 🚀 （依靠 `decode.js` 解密返回的请求）
 
 🚀 一小时执行一次 Action .
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fzkeq%2Ficodeq-api.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fzkeq%2Ficodeq-api?ref=badge_large)
