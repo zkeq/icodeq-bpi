@@ -37,12 +37,7 @@ jobs:
           pip install -r ./requirements.txt
           npm install crypto-js
 
-      - name: 'Working 163 MV JavaScript Reverse' # 把这个放在前面 是因为后面的那个代码 可能会报错
+      - name: 'Working Parwix Decode'
         env:
           PASSWORD: ${{ secrets.PASSWORD }}
-        run: python ./api/get_163_mv_vercel/get-new-url/main_local.py
-
-      - name: 'Working 163 MV Crawler'
-        env:
-          PASSWORD: ${{ secrets.PASSWORD }}
-        run: python ./api/get_163_mv/Action-fresh.py
+        run: python api\parwix\get-new-url\main.py
