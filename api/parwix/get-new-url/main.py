@@ -27,7 +27,7 @@ headers = {
 
 
 def get_params(_pr, _pu, _url):
-    with open('jx2.js', 'r', encoding='utf-8') as f:
+    with open('./api/parwix/get-new-url/decode.js', 'r', encoding='utf-8') as f:
         ctx = execjs.compile(f.read())
         dit = ctx.call('jie_mi', _pr, _pu, _url)
         return dit
