@@ -6,7 +6,7 @@
 
 🚀 仓库地址：https://github.com/zkeq/icodeq-bpi/tree/main/api/parwix
 
-🚀 示例地址：https://bpi.icodeq.com/api/parwix
+🚀 示例地址：https://bpi.icodeq.com/api/parwix?https://www.bilibili.com/video/BV1G5411o7yX
 
 🚀 后端由 Github Action 驱动！
 
