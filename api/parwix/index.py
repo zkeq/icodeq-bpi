@@ -30,7 +30,7 @@ def get_video(video_id):
 
 class handler(BaseHTTPRequestHandler):
     def do_GET(self):
-        url = self.path.split('?')[1]
+        url = get_video("https://www.bilibili.com/video/BV1G5411o7yX")
         self.send_response(308)
         self.send_header('Access-Control-Allow-Origin', '*')
         self.send_header('location', url)
