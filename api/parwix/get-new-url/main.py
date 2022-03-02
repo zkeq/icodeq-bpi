@@ -51,7 +51,7 @@ def post_mv_2_redis(_video_id, _video_url):
 
 
 if __name__ == '__main__':
-    video_list = ['https://www.bilibili.com/video/BV1G5411o7yX', 'https://www.iqiyi.com/v_pzqg2653vk.html']
+    video_list = ['https://www.bilibili.com/video/BV1G5411o7yX']
     for i in video_list:
         url, pr, pu = get_data(i)
         data = get_params(pr, pu, url)
