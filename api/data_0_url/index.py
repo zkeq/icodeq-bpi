@@ -29,8 +29,8 @@ def get_video(url, cache):
 
 class handler(BaseHTTPRequestHandler):
     def do_GET(self):
-        url = self.path.split('?')[1]
-        cache = self.path.split('?')[2]
+        url = self.path.split('?')[1].split('=')[0]
+        cache = self.path.split('?')[1].split('=')[1]
         params_data = get_video(url, cache)
         self.send_response(308)  # vercel 只有 308 跳转才可以缓存 详情见官方文档
         self.send_header('Access-Control-Allow-Origin', '*')
