@@ -3,6 +3,8 @@ from http.server import BaseHTTPRequestHandler
 import requests
 import redis
 import json
+# unquot
+from urllib.parse import unquote
 import os
 
 env_dist = os.environ
@@ -30,6 +32,7 @@ def get_video(url, cache):
 class handler(BaseHTTPRequestHandler):
     def do_GET(self):
         url = self.path.split('?')[1].split('=')[0]
+        url = unquote(url)
         cache = self.path.split('?')[1].split('=')[1]
         params_data = get_video(url, cache)
         self.send_response(308)  # vercel 只有 308 跳转才可以缓存 详情见官方文档
