@@ -24,7 +24,7 @@ def get_video(_url, _cache, url_form):
     if data is None:
         print("data is None")
         data = requests.get(_url).content
-        r.set(_url, data, ex=int(_cache))
+        r.set(_url, data, ex=min(int(_cache), 3600))
         data = json.loads(data)
         print("data:", data)
     else:
