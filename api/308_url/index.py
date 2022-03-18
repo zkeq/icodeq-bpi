@@ -33,7 +33,8 @@ def get_video(_url, _cache, url_form):
         print("data:", data)
     data_content = eval(_str_base64)
     print("data_content:", data_content)
-    return data_content
+    https_content = data_content.replace('http', 'https')
+    return https_content
 
 
 class handler(BaseHTTPRequestHandler):
