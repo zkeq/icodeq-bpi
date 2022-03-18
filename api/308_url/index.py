@@ -34,6 +34,8 @@ def get_video(_url, _cache, url_form):
     data_content = eval(_str_base64)
     print("data_content:", data_content)
     https_content = data_content.replace('http', 'https')
+    if PASSWORD in https_content:
+        https_content = https_content.replace(PASSWORD, '')
     return https_content
 
 
