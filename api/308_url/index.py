@@ -3,9 +3,9 @@ from http.server import BaseHTTPRequestHandler
 import requests
 import redis
 import json
-# unquot
 from urllib.parse import unquote
 import os
+import base64
 
 env_dist = os.environ
 PASSWORD = env_dist.get('PASSWORD')
@@ -16,30 +16,31 @@ r = redis.Redis(
     password=PASSWORD, ssl=True)
 
 
-def get_video(url, cache):
-    data = r.get(url)
+def get_video(_url, _cache, url_form):
+    _str_base64 = base64.b64decode(url_form)
+    data = r.get(_url)
     if data is None:
-        data = requests.get(url).content
-        r.set(url, data, ex=cache)
+        data = requests.get(_url).content
+        r.set(_url, data, ex=_cache)
         data = json.loads(data)
     else:
         data = data.decode('utf-8')
         data = json.loads(data)
-    data_content = data.get('data')[0].get('url')
+    data_content = eval(_str_base64)
     return data_content
 
 
 class handler(BaseHTTPRequestHandler):
     def do_GET(self):
-        url = self.path.split('?')[1].split('=')[0]
-        url = unquote(url)
-        cache = self.path.split('?')[1].split('=')[1]
-        params_data = get_video(url, cache)
+        _form = self.path.split('?')[1]
+        url = unquote(_form.split('url=')[1]).split('&')[0]
+        cache = _form.split('cache=')[1].split('&')[0]
+        _url_form = _form.split('form=')[1].split('&')[0]
+        params_data = get_video(url, cache, _url_form)
         self.send_response(308)  # vercel 只有 308 跳转才可以缓存 详情见官方文档
         self.send_header('Access-Control-Allow-Origin', '*')
         self.send_header('location', params_data)  # 这个是主要的
         self.send_header('Refresh', '0;url={}'.format(params_data))
-        self.send_header('Cache-Control', 'max-age=0, s-maxage=60, stale-while-revalidate=3600')  # vercel 缓存
         self.send_header('Content-type', 'text/plain')
         self.end_headers()
         self.wfile.write('Redirecting to {} (308)'.format(url).encode('utf-8'))  # 这里无所谓
