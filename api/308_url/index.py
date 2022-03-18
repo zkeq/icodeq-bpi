@@ -17,7 +17,7 @@ r = redis.Redis(
 
 
 def get_video(_url, _cache, url_form):
-    _str_base64 = base64.b64decode(url_form)
+    _str_base64 = base64.b64decode(unquote(url_form))
     print("_str_base64:", _str_base64)
     data = r.get(_url)
     print("try get data:", data)
