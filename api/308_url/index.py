@@ -44,7 +44,7 @@ class handler(BaseHTTPRequestHandler):
         print("self.path:", self.path)
         _form = self.path.split('?')[1]
         print('_form:', _form)
-        url = unquote(_form.split('url=')[1]).split('&')[0]
+        url = unquote(_form.split('url=')[1].split('&')[0])
         print('url:', url)
         cache = _form.split('cache=')[1].split('&')[0]
         print('cache:', cache)
