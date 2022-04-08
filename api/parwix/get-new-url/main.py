@@ -4,6 +4,7 @@ import requests
 import execjs
 import redis
 import os
+import time
 import re
 
 
@@ -36,7 +37,21 @@ def get_params(_pr, _pu, _url):
 def get_data(before_url):
     base_url = 'https://jx.parwix.com:4433/player/analysis.php?v='
     final_url = base_url + before_url
-    datas = requests.get(final_url, headers=headers).text
+    try:
+        datas = requests.get(final_url, headers=headers).text
+    except requests.exceptions.ConnectionError as e:
+        print(e)
+        time.sleep(5)
+        try:
+            datas = requests.get(final_url, headers=headers).text
+        except requests.exceptions.ConnectionError as e:
+            print(e)
+            time.sleep(5)
+            try:
+                datas = requests.get(final_url, headers=headers).text
+            except requests.exceptions.ConnectionError as e:
+                print(e)
+                exit(404)
     url_ek = re.findall('"url": "(.*?)", //视频链接', datas)[0]
     _pr = re.findall('user-scalable=no" id="(.*?)">', datas)[0]
     _pu = re.findall('<meta charset="UTF-8" id="(.*?)">', datas)[0]
