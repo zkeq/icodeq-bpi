@@ -34,24 +34,24 @@ def get_params(_pr, _pu, _url):
         return dit
 
 
+def try_time_three(_url, TIMES):
+    try:
+        TIMES += 1
+        datas = requests.get(_url, headers=headers).text
+    except requests.exceptions.ConnectionError as e:
+        if TIMES == 3:
+            exit(404)
+        print(f"遇到错误{e}，正在尝试第 {TIMES} 次重新获取数据")
+        time.sleep(5)
+        try_time_three(_url, TIMES)
+    return datas
+
+
 def get_data(before_url):
     base_url = 'https://jx.parwix.com:4433/player/analysis.php?v='
     final_url = base_url + before_url
-    try:
-        datas = requests.get(final_url, headers=headers).text
-    except requests.exceptions.ConnectionError as e:
-        print(e)
-        time.sleep(5)
-        try:
-            datas = requests.get(final_url, headers=headers).text
-        except requests.exceptions.ConnectionError as e:
-            print(e)
-            time.sleep(5)
-            try:
-                datas = requests.get(final_url, headers=headers).text
-            except requests.exceptions.ConnectionError as e:
-                print(e)
-                exit(404)
+    TIMES = 0
+    datas = try_time_three(final_url, TIMES)
     url_ek = re.findall('"url": "(.*?)", //视频链接', datas)[0]
     _pr = re.findall('user-scalable=no" id="(.*?)">', datas)[0]
     _pu = re.findall('<meta charset="UTF-8" id="(.*?)">', datas)[0]
