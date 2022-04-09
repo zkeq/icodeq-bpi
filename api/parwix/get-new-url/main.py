@@ -38,6 +38,7 @@ def try_time_three(_url, TIMES):
     try:
         TIMES += 1
         datas = requests.get(_url, headers=headers).text
+        print(_url, "获取到的数据为：", datas)
         temp = re.findall('"url": "(.*?)", //视频链接', datas)[0]
     except requests.exceptions.ConnectionError as e:
         if TIMES == 3:
