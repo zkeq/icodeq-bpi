@@ -39,8 +39,8 @@ def try_time_three(_url, TIMES):
         TIMES += 1
         datas = requests.get(_url, headers=headers).text
         print(_url, "获取到的数据为：", datas)
-        temp = re.findall('"url": "(.*?)", //视频链接', datas)[0]
-    except requests.exceptions.ConnectionError as e:
+        re.findall('"url": "(.*?)", //视频链接', datas)[0]
+    except (requests.exceptions.ConnectionError, IndexError) as e:
         if TIMES == 3:
             exit(404)
         print(f"遇到错误{e}，正在尝试第 {TIMES} 次重新获取数据")
