@@ -52,6 +52,12 @@ def try_time_three(_url, TIMES):
         print(f"遇到错误{e}，正在尝试第 {TIMES} 次重新获取数据")
         time.sleep(60)
         try_time_three(_url, TIMES)
+    if data.status_code != 200:
+        if TIMES == 5:
+            exit(404)
+        print('第', TIMES, '次请求失败，正在重新请求...')
+        time.sleep(60)
+        return try_time_three(_url, TIMES)
     return datas
 
 
@@ -60,7 +66,6 @@ def get_data(before_url):
     final_url = base_url + before_url
     TIMES = 0
     datas = try_time_three(final_url, TIMES)
-
     url_ek = re.findall('"url": "(.*?)", //视频链接', datas)[0]
     _pr = re.findall('user-scalable=no" id="(.*?)">', datas)[0]
     _pu = re.findall('<meta charset="UTF-8" id="(.*?)">', datas)[0]
