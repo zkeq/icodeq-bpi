@@ -1,0 +1,10 @@
+{
+    "version": 2,
+    "public": true,
+    "builds": [{ "src": "fast.py", "use": "@vercel/python" }],
+    "routes": [
+        {"src": "/api/markdown_table", "dest": "fast.py" },
+        {"src": "/api/308_url", "dest": "api/308_url/index.py"},
+        {"src": "/api/parwix", "dest": "api/parwix/index.py"}
+    ]
+}
