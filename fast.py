@@ -27,6 +27,14 @@ def get_table(data, headers):
     return table
 
 
+@app.get("/")
+def read_root():
+    # 读取html
+    with open("index.html", "r") as f:
+        html = f.read()
+    return HTMLResponse(html)
+
+
 @app.post("/api/markdown_table")
 def main(data: str = Form(...), headers: str = Form(...)):
     data = eval(data)

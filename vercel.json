@@ -6,6 +6,6 @@
         {"src": "/api/markdown_table", "dest": "fast.py" },
         {"src": "/api/308_url", "dest": "api/308_url/index.py"},
         {"src": "/api/parwix", "dest": "api/parwix/index.py"},
-        {"src": "/", "dest": "index.html"}
+        {"src": "/", "dest": "fast.py"},
     ]
 }
