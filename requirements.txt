@@ -4,3 +4,4 @@ redis==4.1.4
 PyExecJS==1.5.1
 fake_useragent==0.1.11
 fastapi~=0.75.0
+uvicorn==19.10.0
