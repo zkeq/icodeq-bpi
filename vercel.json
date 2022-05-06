@@ -1,7 +1,11 @@
 {
     "version": 2,
     "public": true,
-    "builds": [{ "src": "fast.py", "use": "@vercel/python" }],
+    "builds": [
+        { "src": "fast.py", "use": "@vercel/python" },
+        { "src": "api/308_url/index.py", "use": "@vercel/python" },
+        { "src": "api/parwix/index.py", "use": "@vercel/python" }
+    ],
     "routes": [
         {"src": "/api/markdown_table", "dest": "fast.py" },
         {"src": "/api/308_url", "dest": "api/308_url/index.py"},
