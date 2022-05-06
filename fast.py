@@ -1,6 +1,7 @@
 # coding:utf-8
 import uvicorn
 from fastapi import FastAPI, Form
+from fastapi.responses import HTMLResponse
 
 app = FastAPI(docs_url=None, redoc_url=None)
 
@@ -24,6 +25,14 @@ def get_table(data, headers):
         num += 1
     print(table)
     return table
+
+
+@app.get("/")
+def read_root():
+    # 读取html
+    with open("index.html", "r") as f:
+        html = f.read()
+    return HTMLResponse(html)
 
 
 @app.post("/api/markdown_table")
