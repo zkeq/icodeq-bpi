@@ -26,6 +26,7 @@ def get_table(data, headers):
 
 class handler(BaseHTTPRequestHandler):
     def do_POST(self):
+        print("self.request:", self.request)
         data_content = self.request.form['data']
         headers = self.request.form['headers']
         data = eval(data_content)
