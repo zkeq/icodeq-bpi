@@ -1,6 +1,6 @@
 # coding:utf-8
 import uvicorn
-from fastapi import FastAPI
+from fastapi import FastAPI, Form
 
 app = FastAPI(docs_url=None, redoc_url=None)
 
@@ -26,8 +26,8 @@ def get_table(data, headers):
     return table
 
 
-@app.post("/")
-def main(data, headers):
+@app.post("/api/markdown_table")
+def main(data: str = Form(...), headers: str = Form(...)):
     data = eval(data)
     headers = eval(headers)
     print("data:", data)
