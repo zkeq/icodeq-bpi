@@ -12,7 +12,7 @@ def get_pic():
     # 获取当前的秒数
     now_time = time.time()
     # 获取当前的秒数的余数
-    now_time_mod = now_time % len(pic_list)
+    now_time_mod = int(now_time % len(pic_list))
     # 获取当前的秒数的余数的图片地址
     pic_url = pic_list[now_time_mod]
     return pic_url
