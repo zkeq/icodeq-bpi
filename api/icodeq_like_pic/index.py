@@ -4,8 +4,7 @@ import time
 
 pic_list = [
     "https://ik.imagekit.io/zkeq/like.jpg",
-    "https://ik.imagekit.io/zkeq/2se.jpg",
-    "https://ik.imagekit.io/zkeq/Sunshine3_4k_16x9.jpg"
+    "https://ik.imagekit.io/zkeq/2se.jpg"
 ]
 
 
