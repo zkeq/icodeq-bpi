@@ -3,8 +3,8 @@ from http.server import BaseHTTPRequestHandler
 import time
 
 pic_list = [
-    "https://pic.cdn.icodeq.com/like.jpg",
-    "https://pic.cdn.icodeq.com/2se.jpg"
+    "https://ik.imagekit.io/zkeq/like.jpg",
+    "https://ik.imagekit.io/zkeq/2se.jpg"
 ]
 
 
