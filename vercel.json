@@ -12,6 +12,7 @@
         {"src": "/api/308_url", "dest": "api/308_url/index.py"},
         {"src": "/api/parwix", "dest": "api/parwix/index.py"},
         {"src": "/", "dest": "fast.py"},
-        {"src": "/icodeq-INDEX-pic", "dest": "api/icodeq_like_pic/index.py"}
+        {"src": "/icodeq-INDEX-pic", "dest": "api/icodeq_like_pic/index.py"},
+        {"src": "api/308_test", "dest": "api/308_test/index.py"}
     ]
 }
