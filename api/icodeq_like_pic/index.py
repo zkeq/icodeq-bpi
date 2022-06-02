@@ -5,7 +5,7 @@ import time
 pic_list = [
     "https://ik.imagekit.io/zkeq/like.jpg",
     "https://ik.imagekit.io/zkeq/2se.jpg",
-    "https://bu.dusays.com/2022/06/02/6298cdec02772.jpg"
+    "https://bu.dusays.com/2022/06/02/6298cee04cb42.jpg"
 ]
 
 
