@@ -10,6 +10,7 @@ import base64
 
 env_dist = os.environ
 PASSWORD = env_dist.get('PASSWORD')
+COOKIE = env_dist.get('COOKIE')
 
 r = redis.Redis(
     host='apn1-destined-giraffe-32369.upstash.io',
@@ -27,7 +28,7 @@ def get_video(_url, _cache, url_form):
     print("headers:", headers)
     if data is None:
         print("data is None")
-        data = requests.get(_url, headers=headers).content
+        data = requests.get(_url, headers=headers,cookies=COOKIE).content
         r.set(_url, data, ex=min(int(_cache), 3600))
         data = json.loads(data)
         print("data:", data)
