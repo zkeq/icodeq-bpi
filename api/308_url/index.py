@@ -24,11 +24,12 @@ def get_video(_url, _cache, url_form):
     print("_str_base64:", _str_base64)
     data = r.get(_url)
     print("try get data:", data)
-    headers = {"User-Agent": UserAgent().chrome}
+    headers = {"User-Agent": UserAgent().chrome, "Cookie": COOKIE}
     print("headers:", headers)
     if data is None:
         print("data is None")
-        data = requests.get(_url, headers=headers,cookies=COOKIE).content
+        # 使用自己的cookie
+        data = requests.get(_url, headers=headers).content
         r.set(_url, data, ex=min(int(_cache), 3600))
         data = json.loads(data)
         print("data:", data)
