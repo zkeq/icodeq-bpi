@@ -5,7 +5,7 @@ import time
 pic_list = [
     "https://img.onmicrosoft.cn/like.jpg",
     "https://img.onmicrosoft.cn/2se.jpg",
-    "https://bu.dusays.com/2022/06/02/6298cee04cb42.jpg"
+    "https://img.onmicrosoft.cn/3se.jpg"
 ]
 
 
