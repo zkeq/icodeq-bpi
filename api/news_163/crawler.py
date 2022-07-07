@@ -15,7 +15,6 @@ def get_days(index):
     days_list = soup.find_all('a', attrs={"class": "title"})
     new_url = days_list[index]['href']
     new_data = requests.get(new_url, headers=headers)
-    print(new_data.text)
     soup = BeautifulSoup(new_data.text, 'lxml')
     day_news = soup.find('div', attrs={"class": "post_body"})
     list_all = str(day_news).split('<br/>')
@@ -28,16 +27,20 @@ def get_days(index):
 
 
 def main(index):
-    data = get_days(index)
-    suc = True
+    try:
+        data = get_days(index)
+        suc = True
+    except Exception as e:
+        data = e
+        suc = False
     return {
         'suc': suc,
         'time': time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()),
-        # 'data': {
-        #     'title': data[0],
-        #     'date': data[1],
-        #     'news': data[2:-1],
-        #     'weiyu': data[-1]
-        # },
+        'data': {
+            'title': data[0],
+            'date': data[1],
+            'news': data[2:-1],
+            'weiyu': data[-1]
+        },
         'all_data': data
     }
