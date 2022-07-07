@@ -49,6 +49,7 @@ def main(data: str = Form(...), headers: str = Form(...)):
 def news(response: Response, index: int = 0):
     response.headers["Cache-Control"] = "max-age=3600, immutable, stale-while-revalidate"
     response.headers["Content-Type"] = "application/json; charset=utf-8"
+    response.headers["Access-Control-Allow-Origin"] = "*"
     return new(index)
 
 
