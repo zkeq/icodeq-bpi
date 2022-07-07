@@ -39,11 +39,11 @@ def main(index):
     return {
         'suc': suc,
         'time': time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()),
-        'data': {
-            'title': data[0],
-            'date': data[1],
-            'news': data[2:-1],
-            'weiyu': data[-1]
-        },
+        # 'data': {
+        #     'title': data[0],
+        #     'date': data[1],
+        #     'news': data[2:-1],
+        #     'weiyu': data[-1]
+        # },
         'all_data': data
     }
