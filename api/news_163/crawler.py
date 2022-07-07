@@ -23,6 +23,7 @@ def get_days(index):
     for i in list_all:
         if "<" not in i and ">" not in i and i != '':
             i.replace('\u200b', '')
+            i.replace('【微语】', '')
             if '、' in i:
                 new_str = '、'.join(i.split('、')[1:])
                 news_list.append(new_str)
