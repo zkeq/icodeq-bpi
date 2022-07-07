@@ -19,27 +19,32 @@ def get_days(index):
     day_news = soup.find('div', attrs={"class": "post_body"})
     list_all = str(day_news).split('<br/>')
     final_list = []
+    news_list = []
     for i in list_all:
         if "<" not in i and ">" not in i and i != '':
             i.replace('\u200b', '')
+            if '、' in i:
+                new_str = '、'.join(i.split('、')[1:])
+                news_list.append(new_str)
             final_list.append(i)
-    return final_list
+    return final_list, news_list
 
 
 def main(index):
     try:
-        data = get_days(index)
+        data, news_list = get_days(index)
         suc = True
     except Exception as e:
         data = e
         suc = False
+        news_list = []
     return {
         'suc': suc,
         'time': time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()),
         'data': {
             'title': data[0],
             'date': data[1],
-            'news': data[2:-1],
+            'news': news_list,
             'weiyu': data[-1]
         },
         'all_data': data
