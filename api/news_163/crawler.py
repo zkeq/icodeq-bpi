@@ -11,8 +11,6 @@ def get_days(index):
     }
 
     data = requests.get(list_url, headers=headers)
-    print(data)
-    print(data.text)
     soup = BeautifulSoup(data.text, 'lxml')
     days_list = soup.find_all('a', attrs={"class": "title"})
     new_url = days_list[index]['href']
@@ -20,6 +18,7 @@ def get_days(index):
     soup = BeautifulSoup(new_data.text, 'lxml')
     day_news = soup.find('div', attrs={"class": "post_body"})
     list_all = str(day_news).split('<br/>')
+    print(list_all)
     final_list = []
     num = 0
     for i in list_all:
