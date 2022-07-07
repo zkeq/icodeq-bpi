@@ -1,6 +1,6 @@
 # coding:utf-8
 import uvicorn
-from fastapi import FastAPI, Form
+from fastapi import FastAPI, Form, Response
 from fastapi.responses import HTMLResponse
 from api.news_163.crawler import main as new
 
@@ -46,7 +46,8 @@ def main(data: str = Form(...), headers: str = Form(...)):
 
 
 @app.get("/163news")
-def news(index: int = 0):
+def news(response: Response, index: int = 0):
+    response.headers["Cache-Control"] = "max-age=86400, immutable, stale-while-revalidate"
     return new(index)
 
 
