@@ -47,7 +47,7 @@ def main(data: str = Form(...), headers: str = Form(...)):
 
 @app.get("/163news")
 def news(response: Response, index: int = 0):
-    response.headers["Cache-Control"] = "max-age=86400, immutable, stale-while-revalidate"
+    response.headers["Cache-Control"] = "max-age=3600, immutable, stale-while-revalidate"
     return new(index)
 
 
