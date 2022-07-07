@@ -2,8 +2,9 @@
 import uvicorn
 from fastapi import FastAPI, Form
 from fastapi.responses import HTMLResponse
+from api.news_163.crawler import main as new
 
-app = FastAPI(docs_url=None, redoc_url=None)
+app = FastAPI()
 
 
 def get_table(data, headers):
@@ -42,6 +43,11 @@ def main(data: str = Form(...), headers: str = Form(...)):
     print("data:", data)
     print("headers:", headers)
     return get_table(data, headers)
+
+
+@app.get("/163news")
+def news(index: int = 0):
+    return new(index)
 
 
 if __name__ == "__main__":
