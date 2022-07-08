@@ -46,11 +46,11 @@ def main(data: str = Form(...), headers: str = Form(...)):
 
 
 @app.get("/163news")
-def news(response: Response, index: int = 0, cache: str = 'null'):
+def news(response: Response, index: int = 0, origin: str = 'zhihu', cache: str = 'null'):
     response.headers["Cache-Control"] = "max-age=86400, immutable, stale-while-revalidate"
     response.headers["Content-Type"] = "application/json; charset=utf-8"
     response.headers["Access-Control-Allow-Origin"] = "*"
-    return new(index)
+    return new(index, origin)
 
 
 if __name__ == "__main__":

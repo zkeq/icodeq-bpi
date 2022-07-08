@@ -4,7 +4,29 @@ import requests
 import time
 
 
-def get_days(index):
+def get_zhihu_days(index):
+    headers = {
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.5060.66 Safari/537.36 Edg/103.0.1264.44"
+    }
+    base_url = f"https://www.zhihu.com/api/v4/columns/c_1261258401923026944/items?limit=1&offset={index}"
+    data = requests.get(base_url, headers=headers).json()
+    html = data['data'][0]['content']
+    soup = BeautifulSoup(html, 'lxml')
+    day_news = soup.find_all('p')
+    final_list = []
+    news_list = []
+    for i in day_news:
+        i = i.text
+        if i != '':
+            final_list.append(i)
+            if '、' in i:
+                new_str = '、'.join(i.split('、')[1:])
+                news_list.append(new_str)
+    final_list[0], final_list[1] = final_list[1], final_list[0]
+    return final_list, news_list
+
+
+def get_163_days(index):
     list_url = 'https://www.163.com/dy/media/T1603594732083.html'
     headers = {
         "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.5060.66 Safari/537.36 Edg/103.0.1264.44"
@@ -30,14 +52,23 @@ def get_days(index):
     return final_list, news_list
 
 
-def main(index):
-    try:
-        data, news_list = get_days(index)
-        suc = True
-    except Exception as e:
-        data = e
-        suc = False
-        news_list = []
+def main(index, origin):
+    if origin == 'zhihu':
+        try:
+            data, news_list = get_zhihu_days(index)
+            suc = True
+        except Exception as e:
+            data = e
+            suc = False
+            news_list = []
+    else:
+        try:
+            data, news_list = get_163_days(index)
+            suc = True
+        except Exception as e:
+            data = e
+            suc = False
+            news_list = []
     return {
         'suc': suc,
         'time': time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()),
