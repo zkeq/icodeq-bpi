@@ -50,6 +50,8 @@ def news(response: Response, index: int = 0, origin: str = 'zhihu', cache: str =
     response.headers["Cache-Control"] = "max-age=86400, immutable, stale-while-revalidate"
     response.headers["Content-Type"] = "application/json; charset=utf-8"
     response.headers["Access-Control-Allow-Origin"] = "*"
+    if origin == "undefined":
+        origin = "zhihu"
     return new(index, origin)
 
 
