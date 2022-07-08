@@ -33,6 +33,7 @@ def get_163_days(index):
     }
 
     data = requests.get(list_url, headers=headers)
+    print(data.text)
     soup = BeautifulSoup(data.text, 'lxml')
     days_list = soup.find_all('a', attrs={"class": "title"})
     new_url = days_list[index]['href']
