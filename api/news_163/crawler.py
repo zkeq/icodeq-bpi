@@ -29,11 +29,12 @@ def get_zhihu_days(index):
 def get_163_days(index):
     list_url = 'https://www.163.com/dy/media/T1603594732083.html'
     headers = {
-        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.5060.66 Safari/537.36 Edg/103.0.1264.44"
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.5060.66 Safari/537.36 Edg/103.0.1264.44",
+        "realIP": "218.109.147.57"
     }
 
     data = requests.get(list_url, headers=headers)
-    print(data.text)
+    print(data.url)
     soup = BeautifulSoup(data.text, 'lxml')
     days_list = soup.find_all('a', attrs={"class": "title"})
     new_url = days_list[index]['href']
