@@ -35,8 +35,8 @@ def get_news(_news_str, _cookies):
         data_href = i.find('a', attrs={"class": "y-padding-content"})
         data = {
             "title": str(title),
-            "origin": str(data_from),
-            "time": str(data_time),
+            "origin": data_from.text,
+            "time": data_time.text,
             "href": data_href['href']
         }
         datalist.append(data)
@@ -55,14 +55,14 @@ def get_weibo_live(_news_str, _cookies):
     # print(day_news)
     data_list = []
     for i in day_news:
-        data_text = i.find('div', attrs={"class": "y-weibo-text"})
+        data_text = i.find('div', attrs={"class": "y-weibo-text"}).find("p")
         data_from = i.find('div', attrs={"class": "y-weibo-name"})
         data_time = i.find('div', attrs={"class": "y-weibo-time"})
         data_href = i.find('a', attrs={"class": "y-weibo-user"})
         data = {
             "text": str(data_text),
-            "origin": str(data_from),
-            "time": str(data_time),
+            "origin": data_from.text,
+            "time": data_time.text,
             "href": data_href['href']
         }
         data_list.append(data)
