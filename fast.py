@@ -3,6 +3,7 @@ import uvicorn
 from fastapi import FastAPI, Form, Response
 from fastapi.responses import HTMLResponse
 from api.news_163.crawler import main as new
+from api.news_163.news_source import main as news_source
 
 app = FastAPI()
 
@@ -53,6 +54,14 @@ def news(response: Response, index: int = 0, origin: str = 'zhihu', cache: str =
     if origin == "undefined":
         origin = "zhihu"
     return new(index, origin)
+
+
+@app.get("/news_source")
+def new_source(response: Response, news_str: str, news_type: str = 'event', cache: str = 'null'):
+    response.headers["Cache-Control"] = "max-age=86400, immutable, stale-while-revalidate"
+    response.headers["Content-Type"] = "application/json; charset=utf-8"
+    response.headers["Access-Control-Allow-Origin"] = "*"
+    return news_source(news_str, news_type)
 
 
 if __name__ == "__main__":

@@ -6,7 +6,8 @@
         { "src": "api/308_url/index.py", "use": "@vercel/python" },
         { "src": "api/parwix/index.py", "use": "@vercel/python" },
         { "src": "api/icodeq_like_pic/index.py", "use": "@vercel/python" },
-        { "src": "api/news_163/crawler.py", "use": "@vercel/python" }
+        { "src": "api/news_163/crawler.py", "use": "@vercel/python" },
+        { "src": "api/news_163/news_source.py", "use": "@vercel/python" }
     ],
     "routes": [
         {"src": "/api/markdown_table", "dest": "fast.py" },
@@ -14,6 +15,7 @@
         {"src": "/api/parwix", "dest": "api/parwix/index.py"},
         {"src": "/", "dest": "fast.py"},
         {"src": "/icodeq-INDEX-pic", "dest": "api/icodeq_like_pic/index.py"},
-        {"src": "/163news", "dest": "fast.py"}
+        {"src": "/163news", "dest": "fast.py"},
+        {"src": "/news_source", "dest": "fast.py"}
     ]
 }
