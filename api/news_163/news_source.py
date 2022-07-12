@@ -29,7 +29,7 @@ def get_news(_news_str, _cookies):
     day_news = soup.find_all('li', attrs={"class": "y-feed-item"})
     datalist = []
     for i in day_news:
-        title = i.find_all('p', attrs={"class": "y-feed-title"})
+        title = i.find('p', attrs={"class": "y-feed-title"})
         data_from = i.find('span', attrs={"class": "y-feed-desc-source"})
         data_time = i.find('span', attrs={"class": "y-feed-desc-time"})
         data_href = i.find('a', attrs={"class": "y-padding-content"})
