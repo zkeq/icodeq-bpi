@@ -57,11 +57,11 @@ def news(response: Response, index: int = 0, origin: str = 'zhihu', cache: str =
 
 
 @app.get("/news_source")
-def new_source(response: Response, news_str: str, news_type: str = 'event', cache: str = 'null'):
+def new_source(response: Response, news_str: str, cache: str = 'null'):
     response.headers["Cache-Control"] = "max-age=86400, immutable, stale-while-revalidate"
     response.headers["Content-Type"] = "application/json; charset=utf-8"
     response.headers["Access-Control-Allow-Origin"] = "*"
-    return news_source(news_str, news_type)
+    return news_source(news_str)
 
 
 if __name__ == "__main__":
