@@ -62,7 +62,7 @@ def try_time_three(_url, TIMES):
 
 
 def get_data(before_url):
-    base_url = 'https://jx.parwix.com:4433/player/analysis.php?v='
+    base_url = 'https://jx.bozrc.com:4433/player/analysis.php?v='
     final_url = base_url + before_url
     TIMES = 0
     datas = try_time_three(final_url, TIMES)
